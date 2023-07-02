@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th = "https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee List</title>
+
+</head>
+<body>
+
+	<th:block th:insert="Header.html"></th:block>
+
+	<div class="container-fluid">
+	
+		<div class="card">
+			<div class="card-header text-center bg-primary text-white">
+			<h5>Employee List</h5>
+			</div>
+			
+			<div class="card-body">
+			
+				<table class="table table-stripted" id="empTable">
+				
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Gender</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>City</th>
+							<th>Company</th>
+							<th>Department</th>
+							<th>Post</th>
+							<th>Salary</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each = "emp: ${empList}">
+						
+							<td>[[${emp.fname}]]</td>
+							<td>[[${emp.lname}]]</td>
+							<td>[[${emp.gender}]]</td>
+							<td>[[${emp.phone}]]</td>
+							<td>[[${emp.email}]]</td>
+							<td>[[${emp.address.city}]]</td>
+							<td>[[${emp.company}]]</td>
+							<td>[[${emp.department.dept_name}]]</td>
+							<td>[[${emp.post}]]</td>
+							<td>[[${emp.salary}]]</td>
+							<td>
+							
+								<a th:href="@{/employee/edit(id = ${emp.id})}"> <input type="submit" value="Edit" class="btn btn-success"> </a>
+								<a th:href="@{/employee/delete(id = ${emp.id})}"> <input type="submit" value="Delete" class="btn btn-danger"> </a>
+								<a th:href="@{/employee/view(id = ${emp.id})}"> <input type="submit" value="View" class="btn btn-primary"> </a>
+							
+							</td>
+							
+						</tr>
+					</tbody>
+				
+				</table>
+			
+			</div>
+			
+			<script type="text/javascript">
+				$(document).ready( function () {
+    				$('#empTable').DataTable();
+		 		} );
+			</script>
+			
+			<div class="card-footer text-center bg-warning"><h6>copyright@2023</h6></div>
+		</div>
+	
+	</div>
+
+</body>
+</html>
